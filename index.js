@@ -12,7 +12,7 @@ app.set("view engine", "ejs");
 const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
 app.use(express.urlencoded({ extended: true }));
-const PORT = 3000;
+const PORT = 10000;
 
 app.use("/categories", categoryRouter);
 app.use("/", itemRouter);
