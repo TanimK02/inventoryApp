@@ -1,0 +1,411 @@
+*,
+::before,
+::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html,
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f6d395;
+    color: #333;
+    width: 100vw;
+    height: 100vh;
+}
+
+.outerContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+}
+
+a {
+    color: inherit;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #00880b;
+    color: white;
+}
+
+.navbar button {
+    background-color: chocolate;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.container {
+    padding: 10px 20px;
+    display: flex;
+}
+
+.menu {
+    width: 70%;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.categories {
+    width: 30%;
+    padding-left: 20px;
+}
+
+.pageNavi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.pageNavi button {
+    background-color: chocolate;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.pageNavi .disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.imgDiv {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 10px;
+
+}
+
+.imgDiv img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.menu h2 {
+    padding-left: 10px;
+    margin: 10px 0;
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    min-height: 180px;
+}
+
+.menuItem:not(:last-of-type) {
+    border-bottom: 1px solid black;
+}
+
+.descDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 20px;
+    flex-grow: 1;
+}
+
+.descDiv p+p {
+    margin-top: 10px;
+}
+
+.descDiv p:first-of-type {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.descDiv p {
+    font-size: 1.2rem;
+}
+
+.nameDiv {
+    width: 200px;
+}
+
+.catButton {
+    background-color: #00880b;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.buttonDiv {
+    display: inline-block;
+}
+
+.buttonsContainer {
+    padding-top: 10px;
+}
+
+.catButton:hover {
+    background-color: #006600;
+}
+
+.searchDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchDiv button {
+    background-color: chocolate;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.selectedButton {
+    background-color: #005500;
+}
+
+.searchDiv input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 200px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #00880b;
+    color: white;
+    margin-top: auto;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+footer a {
+    color: white;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+    margin: 20px auto;
+    height: 100%;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form input,
+form textarea,
+form select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+form button {
+    background-color: chocolate;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+form button:hover {
+    background-color: #cc7a00;
+}
+
+.selectHelp {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.sideCats {
+    overflow-y: scroll;
+}
+
+.sideCats option {
+    padding: 10px;
+}
+
+.categoryAndUpdateDiv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.categoryAndUpdateDiv .updateButton {
+    background-color: chocolate;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.itemViewContainer {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.itemViewContainer h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.itemViewContent {
+    display: flex;
+    gap: 20px;
+}
+
+.itemViewContent .imgDiv {
+    width: 300px;
+    height: 300px;
+    flex-shrink: 0;
+}
+
+.itemViewContent .imgDiv img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.itemViewDetails {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.itemViewDetails p:first-of-type {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.itemViewDetails p:nth-of-type(2) {
+    font-weight: bold;
+}
+
+.itemViewDetails p {
+    font-size: 1.1rem;
+}
+
+.deleteButton {
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.deleteButton:hover {
+    background-color: darkred;
+}
+
+.updateButton {
+    background-color: orange;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.updateButton:hover {
+    background-color: darkorange;
+}
+
+.buttonA {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.viewButtonsContainer {
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.categoriesList {
+    display: flex;
+    padding-top: 10px;
+}
+
+.categoryItem {
+    margin-right: 15px;
+}
+
+.catAddButton {
+    background-color: chocolate;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.errorContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.errorContainer p {
+    margin-bottom: 10px;
+}
+
+.errorContainer button {
+    background-color: chocolate;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+}

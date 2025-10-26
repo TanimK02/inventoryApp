@@ -1,0 +1,28 @@
+<div>
+    <ul>
+        <% for (let i=0; i < items.length; i++) { %>
+            <li class="menuItem">
+                <div class="nameDiv">
+                    <h3>
+                        <%= items[i].name %>
+                    </h3>
+                    <div class="imgDiv"><img src=<%=items[i].img %>></div>
+                </div>
+                <div class="descDiv">
+                    <div class="categoryAndUpdateDiv">
+                        <p>Main Category: <%= items[i].cat_name %>
+                        </p>
+                        <a href="/item/<%= items[i].id %>">
+                            <button class="updateButton">View Item</button>
+                        </a>
+                    </div>
+                    <p>Price: $<%= items[i].price %>
+                    </p>
+                    <p>
+                        <%= items[i].description %>
+                    </p>
+                </div>
+            </li>
+            <% } %>
+    </ul>
+</div>

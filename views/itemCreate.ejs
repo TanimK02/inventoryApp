@@ -1,0 +1,166 @@
+<!-- ...existing code... -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+        <%= item ? 'Update Menu Item' : 'Create Menu Item' %>
+    </title>
+    <link rel="stylesheet" href="/index.css" />
+</head>
+
+<body>
+    <%- include('nav') %>
+
+        <% function errorFor(param) { if (!errors) return '' ; const e=errors.find(x=> x.path === param);
+            return e ? `<p class="error">${e.msg}</p>` : '';
+            }
+            %>
+
+            <div class="container">
+                <% if (!categories || categories.length===0) { %>
+                    <p>No categories available. Please create a category first.</p>
+                    <% } else { %>
+
+                        <% if (update) { %>
+                            <form action="/update/<%= item.id %>?_method=PUT" method="POST" class="itemForm">
+                                <h2>Update Menu Item</h2>
+
+                                <div>
+                                    <label for="name">Item Name:</label>
+                                    <input type="text" id="name" name="name" value="<%= item ? item.name : '' %>"
+                                        required />
+                                    <%- errorFor('name') %>
+                                </div>
+
+                                <div>
+                                    <label for="description">Description:</label>
+                                    <textarea id="description" name="description"
+                                        required><%= item ? item.description : '' %></textarea>
+                                    <%- errorFor('description') %>
+                                </div>
+
+                                <div>
+                                    <label for="price">Price:</label>
+                                    <input type="number" id="price" name="price" step="0.01"
+                                        value="<%= item ? item.price : '' %>" required />
+                                    <%- errorFor('price') %>
+                                </div>
+
+                                <div>
+                                    <label for="img">Image URL:</label>
+                                    <input type="text" id="img" name="img" value="<%= item ? item.img : '' %>" />
+                                    <%- errorFor('img') %>
+                                </div>
+
+                                <div>
+                                    <p class="selectHelp">Please reselect former or new categories</p>
+
+                                    <label for="mainCats">Main Category:</label>
+                                    <select id="mainCats" name="mainCatId" required>
+                                        <% categories.forEach(category=> { %>
+                                            <option value="<%= category.id %>" <%=item &&
+                                                Number(item.first_category)===Number(category.id) ? 'selected' : '' %>>
+                                                <%= category.name %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                    <%- errorFor('mainCatId') %>
+                                </div>
+
+                                <div>
+                                    <label for="sideCats">Side Categories:</label>
+                                    <select class="sideCats" id="sideCats" name="sideCatIds[]" multiple>
+                                        <% categories.forEach(category=> {
+                                            const selected = item && Array.isArray(item.sideCatIds) &&
+                                            item.sideCatIds.map(String).includes(String(category.id));
+                                            %>
+                                            <option value="<%= category.id %>" <%=selected ? 'selected' : '' %>><%=
+                                                    category.name %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                    <%- errorFor('sideCatIds') %>
+                                        <p class="selectHelp">Select multiple categories by holding down Ctrl (Windows)
+                                            or Command (Mac).</p>
+                                </div>
+
+                                <div>
+                                    <button type="submit">Update Item</button>
+                                    <a href="/dropItem/<%= item.id %>"><button type="button" class="deleteButton">Delete
+                                            Item</button></a>
+                                </div>
+                            </form>
+                            <% } else { %>
+
+                                <form action="/create" method="POST" class="itemForm">
+                                    <h2>Create New Menu Item</h2>
+
+                                    <div>
+                                        <label for="name">Item Name:</label>
+                                        <input type="text" id="name" name="name" value="<%= item ? item.name : '' %>"
+                                            required />
+                                        <%- errorFor('name') %>
+                                    </div>
+
+                                    <div>
+                                        <label for="description">Description:</label>
+                                        <textarea id="description" name="description"
+                                            required><%= item ? item.description : '' %></textarea>
+                                        <%- errorFor('description') %>
+                                    </div>
+
+                                    <div>
+                                        <label for="price">Price:</label>
+                                        <input type="number" id="price" name="price" step="0.01"
+                                            value="<%= item ? item.price : '' %>" required />
+                                        <%- errorFor('price') %>
+                                    </div>
+
+                                    <div>
+                                        <label for="img">Image URL:</label>
+                                        <input type="text" id="img" name="img" value="<%= item ? item.img : '' %>" />
+                                        <%- errorFor('img') %>
+                                    </div>
+
+                                    <div>
+                                        <label for="mainCats">Main Category:</label>
+                                        <select id="mainCats" name="mainCatId" required>
+                                            <% categories.forEach(category=> { %>
+                                                <option value="<%= category.id %>">
+                                                    <%= category.name %>
+                                                </option>
+                                                <% }) %>
+                                        </select>
+                                        <%- errorFor('mainCatId') %>
+                                    </div>
+
+                                    <div>
+                                        <label for="sideCats">Side Categories:</label>
+                                        <select class="sideCats" id="sideCats" name="sideCatIds[]" multiple>
+                                            <% categories.forEach(category=> { %>
+                                                <option value="<%= category.id %>">
+                                                    <%= category.name %>
+                                                </option>
+                                                <% }) %>
+                                        </select>
+                                        <%- errorFor('sideCatIds') %>
+                                            <p class="selectHelp">Select multiple categories by holding down Ctrl
+                                                (Windows) or Command (Mac).</p>
+                                    </div>
+
+                                    <div>
+                                        <button type="submit">Create Item</button>
+                                    </div>
+                                </form>
+
+                                <% } %>
+
+                                    <% } %>
+            </div>
+</body>
+
+</html>
+<!-- ...existing code... -->

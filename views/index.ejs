@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.css">
+    <title>Menu</title>
+</head>
+<% const params=new URLSearchParams(query); %>
+
+    <body>
+        <%- include('nav') %>
+            <div class="outerContainer">
+                <div>
+                    <div class="container">
+                        <div class="menu">
+                            <h2>Menu</h2>
+                            <%- include('menuItems', {items: items}) %>
+                        </div>
+                        <div class="categories">
+                            <h2>Categories</h2>
+                            <div class="buttonsContainer">
+                                <% for (let i=0; i < categories.length; i++) { %>
+                                    <div class="buttonDiv">
+                                        <button data-id="<%= categories[i].id %>" class="catButton">
+                                            <%= categories[i].name %>
+                                        </button>
+                                    </div>
+                                    <% } %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pageNavi">
+
+                    <% if (page==1) { %>
+                        <a><button style="background-color: #ccc;"> &lt; </button></a>
+                        <% } else { %>
+                            <% params.set('page', page - 1); %>
+                                <a href="?<%= params.toString() %>"><button> &lt; </button></a>
+                                <% } %>
+                                    <div>
+                                        <%= page %>
+                                    </div>
+                                    <% if (disable) { %>
+                                        <a><button style="background-color: #ccc;" disabled> &gt; </button></a>
+                                        <% } else { %>
+                                            <% params.set('page', page + 1); %>
+                                                <a href="?<%= params.toString() %>"><button> &gt; </button></a>
+                                                <% } %>
+                </div>
+            </div>
+    </body>
+
+    <script>
+        const catButtons = document.querySelectorAll('.catButton');
+        catButtons.forEach(button => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const existing = urlParams.get('categories');
+            if (existing) {
+                const categoryList = existing.split(',');
+                if (categoryList.includes(button.dataset.id)) {
+                    button.classList.add('selectedButton');
+                }
+            }
+        });
+        catButtons.forEach(button => {
+
+            button.addEventListener('click', () => {
+                const category = button.dataset.id;
+                const urlParams = new URLSearchParams(window.location.search);
+
+                // Get existing categories as an array
+                let categoryList = [];
+                const existing = urlParams.get('categories');
+                if (existing) {
+                    categoryList = existing.split(',');
+                }
+
+                // Add new category if not already included
+                if (!categoryList.includes(category)) {
+                    categoryList.push(category);
+                }
+                else {
+                    categoryList = categoryList.filter(cat => cat !== category);
+                }
+
+                urlParams.set('categories', categoryList.join(','));
+                urlParams.set('page', '1'); // reset to first page when filtering
+                window.location.search = urlParams.toString(); // reload page
+            });
+        });
+    </script>
+
+
+</html>

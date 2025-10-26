@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= item.name %>
+    </title>
+    <link rel="stylesheet" href="/index.css">
+</head>
+
+<body>
+    <%- include('nav') %>
+        <div class="itemViewContainer">
+            <h1>
+                <%= item.name %>
+            </h1>
+            <div class="itemViewContent">
+
+                <div class="imgDiv"><img src=<%=item.img %>></div>
+                <div class="itemViewDetails">
+
+                    <p>Main Category: <%= item.cat_name %>
+                    </p>
+                    <p>Price: $<%= item.price %>
+                    </p>
+                    <p>
+                        <%= item.description %>
+                    </p>
+
+                    <a class="buttonA" href="/update/<%= item.id %>">
+                        <button class="updateButton">Update Item</button>
+                    </a>
+                    <a class="buttonA" href="/dropItem/<%= item.id %>">
+                        <button class="deleteButton">Delete Item</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>

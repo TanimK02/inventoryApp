@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
+    <link rel="stylesheet" href="/index.css">
+</head>
+
+<body>
+    <%- include('nav') %>
+        <div class="container">
+            <div class="viewButtonsContainer">
+                <h2>Categories</h2>
+                <div class="categoriesList">
+                    <% categories.forEach(category=> { %>
+                        <a href="/categories/updateCat/<%= category.id %>" class="categoryItem">
+                            <button class="catButton">
+                                <%= category.name %>
+                            </button>
+                        </a>
+                        <% }); %>
+
+                </div>
+                <button class="catAddButton" onclick="window.location.href='/categories/create'">Create New
+                    Category</button>
+            </div>
+        </div>
+        </div>
+</body>
+
+</html>

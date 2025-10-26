@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <% if (category) { %>
+            "Update Category"
+            <% } else { %>
+                "Create Category"
+                <% } %>
+    </title>
+    <link rel="stylesheet" href="/index.css">
+</head>
+
+<body>
+    <%- include('nav') %>
+        <div class="container">
+            <% if (update) { %>
+                <form action="/categories/updateCat/<%= category.id %>?_method=PUT" method="POST" class="itemForm">
+                    <h2>Update Category</h2>
+                    <div>
+                        <label for="name">Category Name:</label>
+                        <input type="text" id="name" name="name" value="<%= category.name %>" required>
+                    </div>
+                    <div>
+                        <button type="submit">Update Category</button>
+                        <button type="button"
+                            onclick="window.location.href='/categories/dropCat/<%= category.id %>'">Delete
+                            Category</button>
+                    </div>
+                </form>
+                <% } else { %>
+                    <form action="/categories/create" method="POST" class="itemForm">
+                        <h2>Create Category</h2>
+                        <div>
+                            <label for="name">Category Name:</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div>
+                            <button type="submit">Create Category</button>
+                        </div>
+                    </form>
+                    <% } %>
+        </div>
+</body>
+
+</html>
