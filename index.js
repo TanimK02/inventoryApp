@@ -21,8 +21,9 @@ app.use((err, req, res, next) => {
     console.error(err);
     res.status(err.statusCode || 500).render(`${err.statusCode === 404 ? '404' : '500'}`);
 });
-
-app.listen(PORT, (error) => {
+app.keepAliveTimeout = 61 * 1000;
+app.headersTimeout = 65 * 1000;
+app.listen(PORT, "0.0.0.0", (error) => {
 
     if (error) {
         throw error;
